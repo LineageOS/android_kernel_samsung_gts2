@@ -96,6 +96,9 @@ struct arizona_priv {
 
 	unsigned int spk_mute_cache;
 	unsigned int spk_thr2_cache;
+
+	unsigned int out_down_pending;
+	unsigned int out_down_delay;
 };
 
 #define ARIZONA_NUM_MIXER_INPUTS 134
