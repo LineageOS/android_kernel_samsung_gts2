@@ -106,7 +106,7 @@ struct arizona_extcon_info {
 	bool detecting;
 	int jack_flips;
 
-	int hpdet_ip;
+	int hpdet_ip_version;
 
 	struct extcon_dev edev;
 };
@@ -427,7 +427,7 @@ static int arizona_hpdet_read(struct arizona_extcon_info *info)
 		return ret;
 	}
 
-	switch (info->hpdet_ip) {
+	switch (info->hpdet_ip_version) {
 	case 0:
 		if (!(val & ARIZONA_HP_DONE)) {
 			dev_err(arizona->dev, "HPDET did not complete: %x\n",
@@ -488,7 +488,7 @@ static int arizona_hpdet_read(struct arizona_extcon_info *info)
 
 	default:
 		dev_warn(arizona->dev, "Unknown HPDET IP revision %d\n",
-			 info->hpdet_ip);
+			 info->hpdet_ip_version);
 	case 2:
 		if (!(val & ARIZONA_HP_DONE_B)) {
 			dev_err(arizona->dev, "HPDET did not complete: %x\n",
@@ -1487,7 +1487,7 @@ static int arizona_extcon_probe(struct platform_device *pdev)
 			break;
 		default:
 			info->micd_clamp = true;
-			info->hpdet_ip = 1;
+			info->hpdet_ip_version = 1;
 			break;
 		}
 		break;
@@ -1498,13 +1498,13 @@ static int arizona_extcon_probe(struct platform_device *pdev)
 			break;
 		default:
 			info->micd_clamp = true;
-			info->hpdet_ip = 2;
+			info->hpdet_ip_version = 2;
 			break;
 		}
 		break;
 	default:
 		info->micd_clamp = true;
-		info->hpdet_ip = 2;
+		info->hpdet_ip_version = 2;
 		break;
 	}
 
