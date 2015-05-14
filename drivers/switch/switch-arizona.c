@@ -289,7 +289,11 @@ static void arizona_extcon_hp_clamp(struct arizona_extcon_info *info,
 	unsigned int mask, val = 0;
 	unsigned int cap_sel = 0;
 	unsigned int edre_reg = 0, edre_val = 0;
+	unsigned int ep_sel = 0;
 	int ret;
+
+	mutex_lock_nested(&arizona->dapm->card->dapm_mutex,
+			  SND_SOC_DAPM_CLASS_RUNTIME);
 
 	switch (arizona->type) {
 	case WM5102:
@@ -321,6 +325,12 @@ static void arizona_extcon_hp_clamp(struct arizona_extcon_info *info,
 				"Failed to set TST_CAP_SEL: %d\n",
 				 ret);
 		break;
+	case CS47L35:
+		/* check whether audio is routed to EPOUT, do not disable OUT1
+		 * in that case */
+		regmap_read(arizona->regmap, ARIZONA_OUTPUT_ENABLES_1, &ep_sel);
+		ep_sel &= ARIZONA_EP_SEL_MASK;
+		/* fall through to next step to set common variables */
 	case WM8285:
 	case WM1840:
 		edre_reg = CLEARWATER_EDRE_MANUAL;
@@ -339,12 +349,10 @@ static void arizona_extcon_hp_clamp(struct arizona_extcon_info *info,
 		break;
 	};
 
-	mutex_lock(&arizona->dapm->card->dapm_mutex);
-
 	arizona->hpdet_clamp = clamp;
 
 	/* Keep the HP output stages disabled while doing the clamp */
-	if (clamp) {
+	if (clamp && !ep_sel) {
 		ret = regmap_update_bits(arizona->regmap,
 					 ARIZONA_OUTPUT_ENABLES_1,
 					 ARIZONA_OUT1L_ENA |
@@ -355,7 +363,7 @@ static void arizona_extcon_hp_clamp(struct arizona_extcon_info *info,
 				 ret);
 	}
 
-	if (edre_reg) {
+	if (edre_reg && !ep_sel) {
 			ret = regmap_write(arizona->regmap, edre_reg, edre_val);
 			if (ret != 0)
 				dev_warn(arizona->dev,
@@ -378,7 +386,8 @@ static void arizona_extcon_hp_clamp(struct arizona_extcon_info *info,
 	}
 
 	/* Restore the desired state while not doing the clamp */
-	if (!clamp && (arizona->hp_impedance > arizona->pdata.hpdet_short_circuit_imp)) {
+	if (!clamp && (arizona->hp_impedance >
+			arizona->pdata.hpdet_short_circuit_imp) && !ep_sel) {
 		ret = regmap_update_bits(arizona->regmap,
 					 ARIZONA_OUTPUT_ENABLES_1,
 					 ARIZONA_OUT1L_ENA |
