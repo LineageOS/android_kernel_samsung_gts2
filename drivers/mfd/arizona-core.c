@@ -1648,7 +1648,6 @@ int arizona_dev_init(struct arizona *arizona)
 	unsigned int reg, val, mask;
 	int (*apply_patch)(struct arizona *) = NULL;
 	int ret, i, max_inputs;
-	char revision_char;
 
 	dev_set_drvdata(arizona->dev, arizona);
 	mutex_init(&arizona->clk_lock);
@@ -1847,25 +1846,20 @@ int arizona_dev_init(struct arizona *arizona)
 		}
 		apply_patch = wm5102_patch;
 		arizona->rev &= 0x7;
-		revision_char = arizona->rev + 'A';
 		break;
 #endif
 #ifdef CONFIG_MFD_FLORIDA
 	case 0x5110:
 		switch (arizona->type) {
 		case WM8280:
-			if (arizona->rev >= 0x5) {
+			if (arizona->rev >= 0x5)
 				type_name = "WM8281";
-				revision_char = arizona->rev + 60;
-			} else {
+			else
 				type_name = "WM8280";
-				revision_char = arizona->rev + 61;
-			}
 			break;
 
 		case WM5110:
 			type_name = "WM5110";
-			revision_char = arizona->rev + 'A';
 			break;
 
 		default:
@@ -1873,7 +1867,6 @@ int arizona_dev_init(struct arizona *arizona)
 				arizona->type);
 			arizona->type = WM8280;
 			type_name = "Florida";
-			revision_char = arizona->rev + 61;
 			break;
 		}
 		apply_patch = florida_patch;
@@ -1884,20 +1877,17 @@ int arizona_dev_init(struct arizona *arizona)
 		switch (arizona->type) {
 		case CS47L24:
 			type_name = "CS47L24";
-			revision_char = arizona->rev + 'A';
 			break;
 
 		case WM1831:
 			type_name = "WM1831";
-			revision_char = arizona->rev + 'A';
 			break;
 
 		default:
 			dev_err(arizona->dev, "CS47L24 codec registered as %d\n",
 				arizona->type);
 			arizona->type = CS47L24;
-			type_name = "CS47L24";
-			revision_char = arizona->rev + 'A';
+			type_name = "Largo";
 			break;
 		}
 		apply_patch = cs47l24_patch;
@@ -1906,7 +1896,6 @@ int arizona_dev_init(struct arizona *arizona)
 #ifdef CONFIG_MFD_WM8997
 	case 0x8997:
 		type_name = "WM8997";
-		revision_char = arizona->rev + 'A';
 		if (arizona->type != WM8997) {
 			dev_err(arizona->dev, "WM8997 registered as %d\n",
 				arizona->type);
@@ -1933,7 +1922,6 @@ int arizona_dev_init(struct arizona *arizona)
 		}
 
 		apply_patch = vegas_patch;
-		revision_char = arizona->rev + 'A';
 		break;
 #endif
 #ifdef CONFIG_MFD_CLEARWATER
@@ -1953,7 +1941,6 @@ int arizona_dev_init(struct arizona *arizona)
 			arizona->type = WM8285;
 		}
 
-		revision_char = arizona->rev + 'A';
 		apply_patch = clearwater_patch;
 		break;
 #endif
@@ -1962,7 +1949,7 @@ int arizona_dev_init(struct arizona *arizona)
 		goto err_reset;
 	}
 
-	dev_info(dev, "%s revision %c\n", type_name, revision_char);
+	dev_info(dev, "%s revision %c\n", type_name, arizona->rev + 'A');
 
 	if (apply_patch) {
 		ret = apply_patch(arizona);
