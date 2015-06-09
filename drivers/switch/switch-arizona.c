@@ -2687,6 +2687,8 @@ static irqreturn_t arizona_jackdet(int irq, void *data)
 
 		arizona_hs_mic_control(arizona, ARIZONA_MIC_MUTE);
 
+		arizona_hs_mic_control(arizona, ARIZONA_MIC_MUTE);
+
 		info->num_hpdet_res = 0;
 		for (i = 0; i < ARRAY_SIZE(info->hpdet_res); i++)
 			info->hpdet_res[i] = 0;
