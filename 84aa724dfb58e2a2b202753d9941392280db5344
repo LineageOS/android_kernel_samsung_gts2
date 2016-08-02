@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3fa7e38b_1eddb341",
+        "filename": "net/ipv4/tcp_metrics.c",
+        "patchSetId": 2
+      },
+      "lineNbr": 212,
+      "author": {
+        "id": 2936
+      },
+      "writtenOn": "2016-08-02T03:14:43Z",
+      "side": 1,
+      "message": "Can\u0027t you just memset(\u0026addr, 0, sizeof(struct inetpeer_addr)); ?",
+      "range": {
+        "startLine": 212,
+        "startChar": 22,
+        "endLine": 212,
+        "endChar": 26
+      },
+      "revId": "84aa724dfb58e2a2b202753d9941392280db5344",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
