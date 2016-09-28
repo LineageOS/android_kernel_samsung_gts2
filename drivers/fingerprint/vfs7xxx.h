@@ -35,8 +35,8 @@
 #define DRDY_IRQ_ENABLE			1
 #define DRDY_IRQ_DISABLE		0
 
-#ifdef ENABLE_SENSORS_FPRINT_SECURE
-#define FEATURE_SPI_WAKELOCK
+#ifdef FEATURE_SPI_WAKELOCK
+#undef FEATURE_SPI_WAKELOCK
 #endif /* CONFIG_SEC_FACTORY */
 
 /* IOCTL commands definitions */
