@@ -22,6 +22,30 @@
       "revId": "0755295359583e09f5c8e6b65489ea6cc161a574",
       "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
       "unresolved": false
+    },
+    {
+      "key": {
+        "uuid": "3a1d315d_f74a7a26",
+        "filename": "arch/arm/boot/dts/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 7155
+      },
+      "writtenOn": "2016-12-30T13:00:11Z",
+      "side": 1,
+      "message": "I didn\u0027t look at it, but those are the filenames from the dts files that Samsung shipped in their stock kernel sources, I\u0027d rather not change/touch those.\nYou should just add your gts28 files, and put the correct filename here.\nThe dtbimage tool will select the correct dtb by the defines set for your target.",
+      "parentUuid": "3a1d315d_d7c09e7e",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 30
+      },
+      "revId": "0755295359583e09f5c8e6b65489ea6cc161a574",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
     }
   ]
 }
