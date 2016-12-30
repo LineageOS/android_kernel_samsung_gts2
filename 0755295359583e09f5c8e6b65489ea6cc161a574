@@ -1,0 +1,27 @@
+{
+  "comments": [
+    {
+      "key": {
+        "uuid": "3a1d315d_d7c09e7e",
+        "filename": "arch/arm/boot/dts/Makefile",
+        "patchSetId": 2
+      },
+      "lineNbr": 61,
+      "author": {
+        "id": 8392
+      },
+      "writtenOn": "2016-12-30T12:48:04Z",
+      "side": 1,
+      "message": "What is the _06 indicating in this filename? hw revision?\n\nIf so, is it really needed? (and when it is, I guess I\u0027ll need the gts28 name to _08, as that\u0027s the hw revision there)",
+      "range": {
+        "startLine": 61,
+        "startChar": 12,
+        "endLine": 61,
+        "endChar": 30
+      },
+      "revId": "0755295359583e09f5c8e6b65489ea6cc161a574",
+      "serverId": "1ec6b3db-b2c1-4fa4-84a2-4c7efe89ba71",
+      "unresolved": false
+    }
+  ]
+}
