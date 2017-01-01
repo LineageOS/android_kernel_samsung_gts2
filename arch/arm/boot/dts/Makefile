@@ -57,6 +57,7 @@ dtb-$(CONFIG_ARCH_EXYNOS) += exynos4210-origen.dtb \
 	exynos5250-arndale.dtb \
 	exynos5250-smdk5250.dtb \
 	exynos5250-snow.dtb \
+	exynos5433-gts28_eur_open_08.dtb \
 	exynos5433-gts210_eur_open_06.dtb \
 	exynos5440-sd5v1.dtb \
 	exynos5440-ssdk5440.dtb
