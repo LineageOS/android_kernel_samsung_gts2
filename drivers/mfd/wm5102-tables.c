@@ -138,6 +138,7 @@ static const struct {
 	{ wm5102t_pwr_4, ARRAY_SIZE(wm5102t_pwr_4) },
 };
 
+#ifdef CONFIG_MFD_WM5102
 /* We use a function so we can use ARRAY_SIZE() */
 int wm5102_patch(struct arizona *arizona)
 {
@@ -173,6 +174,7 @@ int wm5102_patch(struct arizona *arizona)
 out:
 	return ret;
 }
+#endif
 
 static const struct regmap_irq wm5102_aod_irqs[ARIZONA_NUM_IRQ] = {
 	[ARIZONA_IRQ_MICD_CLAMP_FALL] = {

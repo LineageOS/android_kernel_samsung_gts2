@@ -325,12 +325,6 @@ static void arizona_extcon_hp_clamp(struct arizona_extcon_info *info,
 				"Failed to set TST_CAP_SEL: %d\n",
 				 ret);
 		break;
-	case CS47L35:
-		/* check whether audio is routed to EPOUT, do not disable OUT1
-		 * in that case */
-		regmap_read(arizona->regmap, ARIZONA_OUTPUT_ENABLES_1, &ep_sel);
-		ep_sel &= ARIZONA_EP_SEL_MASK;
-		/* fall through to next step to set common variables */
 	case WM8285:
 	case WM1840:
 		edre_reg = CLEARWATER_EDRE_MANUAL;

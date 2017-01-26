@@ -2093,7 +2093,6 @@ int arizona_dev_init(struct arizona *arizona)
 	case CS47L24:
 	case WM8998:
 	case WM1814:
-	case CS47L35:
 		max_inputs = 2;
 		break;
 	default:
