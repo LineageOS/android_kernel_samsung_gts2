@@ -59,6 +59,45 @@ dtb-$(CONFIG_ARCH_EXYNOS) += exynos4210-origen.dtb \
 	exynos5250-snow.dtb \
 	exynos5422-smdk5422.dtb \
 	exynos5430-xyref5430.dtb \
+	exynos5433-gts210_chn_open_05.dtb \
+	exynos5433-gts210_chn_open_06.dtb \
+	exynos5433-gts210_eur_open_03.dtb \
+	exynos5433-gts210_eur_open_04.dtb \
+	exynos5433-gts210_eur_open_05.dtb \
+	exynos5433-gts210_eur_open_06.dtb \
+	exynos5433-gts210_sea_open_05.dtb \
+	exynos5433-gts210_sea_open_06.dtb \
+	exynos5433-gts210_usa_open_03.dtb \
+	exynos5433-gts210_usa_open_04.dtb \
+	exynos5433-gts210_usa_open_05.dtb \
+	exynos5433-gts210_usa_open_06.dtb \
+	exynos5433-gts210_usa_spr_06.dtb \
+	exynos5433-gts210_usa_vzw_03.dtb \
+	exynos5433-gts210_usa_vzw_04.dtb \
+	exynos5433-gts210_usa_vzw_05.dtb \
+	exynos5433-gts210_usa_vzw_06.dtb \
+	exynos5433-gts210_ww_open_05.dtb \
+	exynos5433-gts210_ww_open_06.dtb \
+	exynos5433-gts210wifi_eur_open_04.dtb \
+	exynos5433-gts210wifi_eur_open_05.dtb \
+	exynos5433-gts210wifi_eur_open_06.dtb \
+	exynos5433-gts210wifi_ww_open_05.dtb \
+	exynos5433-gts210wifi_ww_open_06.dtb \
+	exynos5433-gts28_eur_open_03.dtb \
+	exynos5433-gts28_eur_open_04.dtb \
+	exynos5433-gts28_eur_open_05.dtb \
+	exynos5433-gts28_eur_open_03.dtb \
+	exynos5433-gts28_eur_open_04.dtb \
+	exynos5433-gts28_eur_open_05.dtb \
+	exynos5433-gts28_eur_open_06.dtb \
+	exynos5433-gts28_eur_open_09.dtb \
+	exynos5433-gts28_ww_open_05.dtb \
+	exynos5433-gts28_ww_open_06.dtb \
+	exynos5433-gts28_ww_open_09.dtb \
+	exynos5433-gts28wifi_eur_open_05.dtb \
+	exynos5433-gts28wifi_eur_open_06.dtb \
+	exynos5433-gts28wifi_ww_open_05.dtb \
+	exynos5433-gts28wifi_ww_open_06.dtb \
 	exynos5440-ssdk5440.dtb
 dtb-$(CONFIG_ARCH_HIGHBANK) += highbank.dtb \
 	ecx-2000.dtb
